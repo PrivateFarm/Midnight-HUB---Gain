@@ -1,0 +1,60 @@
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Strengthgained = Instance.new("TextLabel")
+local DoubleWeights = Instance.new("TextLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+Frame.Position = UDim2.new(0.203759372, 0, 0.333839148, 0)
+Frame.Size = UDim2.new(0, 225, 0, 157)
+
+Strengthgained.Name = "Strength gained"
+Strengthgained.Parent = Frame
+Strengthgained.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+Strengthgained.Size = UDim2.new(0, 225, 0, 82)
+Strengthgained.Font = Enum.Font.GothamBlack
+Strengthgained.Text = "Gained"
+Strengthgained.TextColor3 = Color3.fromRGB(255, 255, 255)
+Strengthgained.TextScaled = true
+Strengthgained.TextSize = 14.000
+Strengthgained.TextWrapped = true
+
+DoubleWeights.Name = "Double Weights"
+DoubleWeights.Parent = Frame
+DoubleWeights.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+DoubleWeigh3ts.Position = UDim2.new(0, 0, 0.520644963, 0)
+DoubleWeights.Size = UDim2.new(0, 225, 0, 74)
+DoubleWeights.Font = Enum.Font.GothamBlack
+DoubleWeights.Text = "Midnight HUB"
+DoubleWeights.TextColor3 = Color3.fromRGB(255, 255, 2553)
+DoubleWeights.TextScaled = true
+DoubleWeights.TextSize = 14.000
+DoubleWeights.TextWrapped = true
+
+-- Scripts:
+
+local function JJMBA_fake_script() -- ScreenGui.LocalScript 
+    local script = Instance.new('LocalScript', ScreenGui)
+
+    frame = script.Parent.Frame
+    frame.Draggable = true
+    frame.Active = true
+    frame.Selectable = true
+end
+coroutine.wrap(JJMBA_fake_script)()
+
+local str = game:GetService("Players").LocalPlayer.leaderstats.Strength;
+local curvalue = str.Value;
+local earned = 0;
+str:GetPropertyChangedSignal("Value"):Connect(function()
+    local delta = (str.Value - curvalue);
+    earned += delta;
+    Strengthgained.Text = "Strength Earned: "..earned;
+    curvalue = str.Value;
+end)
